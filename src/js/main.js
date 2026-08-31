@@ -16,14 +16,6 @@ function qr(quant) {
         document.getElementById('R3').style.display = 'block';
     }
 }
-// function forma(f){
-//     var cc=document.getElementById("cc");
-//     if(f==='serie'){
-
-//     }else if (f==='par'){
-
-//     }
-// }
 function calc() {
     let q = parseInt(document.getElementById('q').value);
     let t = parseInt(document.getElementById('t').value);
@@ -33,7 +25,6 @@ function calc() {
     var r3 = parseInt(document.getElementById('r3').value);
     let u = parseInt(document.getElementById('u').value);
     let p = parseInt(document.getElementById('p').value);
-    let te = parseInt(document.getElementById('te').value);
 
     let campo = document.activeElement.id;//campo alterado
 
@@ -46,8 +37,9 @@ function calc() {
     if (campo == 'q' || campo == 't') {
         if (t > 0) {
             i = q / t;
-            if (i > 0 && rt > 0 && u>0) {
+            if (i > 0 && rt > 0) {
                 u = i * rt;
+                p=u*i;
             }
         }
         c=true;
@@ -64,6 +56,8 @@ function calc() {
             i = u / rt;
             if (t > 0) {
                 q = i * t;
+            }if(p>0){
+                p=i*u;
             }
         }
         c=true;
@@ -71,6 +65,7 @@ function calc() {
         rt = r1 + r2 + r3;
         if (i > 0 && rt > 0) {
             u = i * rt;
+            p=i*u;
         } else if (u > 0 && rt > 0) {
             i = u / rt;
             if (t > 0) {
@@ -78,6 +73,11 @@ function calc() {
             }
         }
         c = true;
+    }else if(campo=='p'&&p>0){
+        if (i>0 && u>0){
+            i = p/u;
+            u=p/i;
+        }
     }
 
     if (!c){
@@ -92,6 +92,7 @@ function calc() {
         } else if (q > 0 && t > 0) {
             i = q / t;
         }
+
         if(u>0&&i>0){
             p=u*i;
         }
