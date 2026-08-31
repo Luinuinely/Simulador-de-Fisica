@@ -5,3 +5,6 @@ img{
     height: 269px;
     width: 469px;
 }
+#R2, #R3{
+    display:none;
+}
